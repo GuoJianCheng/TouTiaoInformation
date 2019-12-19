@@ -1,7 +1,9 @@
 package com.gjc;
 
+import com.gjc.dao.LoginTicketDAO;
 import com.gjc.dao.NewsDAO;
 import com.gjc.dao.UserDAO;
+import com.gjc.model.LoginTicket;
 import com.gjc.model.News;
 import com.gjc.model.User;
 import org.junit.Test;
@@ -13,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.Random;
 
 @RunWith(SpringRunner.class)
@@ -26,12 +29,15 @@ public class ToutiaoinformationApplicationTests {
     private UserDAO userDAO;
     @Resource
     private NewsDAO newsDAO;
+    @Resource
+    private LoginTicketDAO ticketDAO;
 
     @Test
     public void contextLoads() {
         Random random = new Random();
         User user = new User();
         News news = new News();
+        LoginTicket ticket = new LoginTicket();
 //        user.setHeadUrl(String.format("http://images.nowcoder.com/head/%dt.png",random.nextInt(1000)));
 //        user.setName(String.format(String.format("USER%d",11)));
 //        user.setPassword("");
@@ -46,7 +52,15 @@ public class ToutiaoinformationApplicationTests {
 
 //        userDAO.deleteById(12);
 
-        System.out.println(newsDAO.selectByUserIdAndOffset(1,0,2));
+//        System.out.println(newsDAO.selectByUserIdAndOffset(1,0,2));
+
+        ticket.setUserId(12);
+        ticket.setTicket("TICKET12");
+        ticket.setExpired(new Date());
+        ticket.setStatus(2);
+//        ticketDAO.addTicket(ticket);
+        ticketDAO.updateStatus(ticket.getTicket(),0);
+
     }
 
 }
