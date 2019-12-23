@@ -40,12 +40,22 @@ public class NewsController {
     @Autowired
     CommentService commentService;
 
+    @Autowired
+    LikeService likeService;
+
     private static final Logger logger = LoggerFactory.getLogger(NewsController.class);
 
     @RequestMapping(path={"/news/{newsId}"},method={RequestMethod.GET})
     public String newsDetail(@PathVariable("newsId") int newsId, Model model){
         News news = newsService.getById(newsId);
         if(news!=null){
+            int localUserId = hostHolder.getUser()!=null?hostHolder.getUser().getId():0;
+            if(localUserId != 0){
+                //登录状态
+                model.addAttribute("like", likeService.getLikeStatus(localUserId, EntityType.ENTITY_NEWS,news.getId()));
+            }else{
+                model.addAttribute("like",0);
+            }
             //评论
             List<Comment> comments = commentService.getCommentsByEntity(news.getId(), EntityType.ENTITY_NEWS);
             List<ViewObject> commentVos = new ArrayList<ViewObject>();

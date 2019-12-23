@@ -21,7 +21,7 @@ public interface NewsDAO {
     @Update({"update", TABLE_NAME, "set comment_count=#{commentCount} where id = #{id}"})
     int updateCommentCount(@Param("id") int id, @Param("commentCount") int commentCount);
 
-    @Update({"update", TABLE_NAME, "set comment_count=#{likeCount} where id = #{id}"})
+    @Update({"update", TABLE_NAME, "set like_count=#{likeCount} where id = #{id}"})
     int updateLikeCount(@Param("id") int id, @Param("likeCount") int likeCount);
 
     List<News> selectByUserIdAndOffset(@Param("userId") int userId,
