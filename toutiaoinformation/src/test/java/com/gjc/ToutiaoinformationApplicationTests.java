@@ -1,11 +1,10 @@
 package com.gjc;
 
+import com.gjc.dao.CommentDAO;
 import com.gjc.dao.LoginTicketDAO;
 import com.gjc.dao.NewsDAO;
 import com.gjc.dao.UserDAO;
-import com.gjc.model.LoginTicket;
-import com.gjc.model.News;
-import com.gjc.model.User;
+import com.gjc.model.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,8 @@ public class ToutiaoinformationApplicationTests {
     private NewsDAO newsDAO;
     @Resource
     private LoginTicketDAO ticketDAO;
+    @Resource
+    private CommentDAO commentDAO;
 
     @Test
     public void contextLoads() {
@@ -54,13 +55,25 @@ public class ToutiaoinformationApplicationTests {
 
 //        System.out.println(newsDAO.selectByUserIdAndOffset(1,0,2));
 
-        ticket.setUserId(12);
-        ticket.setTicket("TICKET12");
-        ticket.setExpired(new Date());
-        ticket.setStatus(2);
+//        ticket.setUserId(12);
+//        ticket.setTicket("TICKET12");
+//        ticket.setExpired(new Date());
+//        ticket.setStatus(2);
 //        ticketDAO.addTicket(ticket);
-        ticketDAO.updateStatus(ticket.getTicket(),0);
+//        ticketDAO.updateStatus(ticket.getTicket(),0);
 
+        /*for(int i = 0;i < 3;i++){
+            Comment comment = new Comment();
+            comment.setUserId(12);
+            comment.setEntityId(12);
+            comment.setEntityType(EntityType.ENTITY_NEWS);
+            comment.setCreateDate(new Date());
+            comment.setStatus(0);
+            comment.setContent("这是一个评论啊! "+i);
+            commentDAO.addComment(comment);
+        }*/
+        System.out.println(commentDAO.selectByEntity(1,EntityType.ENTITY_NEWS).get(0));
+//        System.out.println(commentDAO.getCommentCount(1,EntityType.ENTITY_NEWS));
     }
 
 }
