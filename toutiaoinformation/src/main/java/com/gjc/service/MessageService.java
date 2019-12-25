@@ -28,4 +28,8 @@ public class MessageService {
     public int getConversationUnreadCount(int userId, String conversationId){
         return messageDAO.getConversationUnreadCount(userId, conversationId);
     }
+
+    public void updateHasRead(int userId, String conversationId){
+        messageDAO.updateHasRead(userId, conversationId);
+    }
 }

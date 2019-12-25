@@ -1,5 +1,8 @@
 package com.gjc.controller;
 
+import com.gjc.async.EventModel;
+import com.gjc.async.EventProducer;
+import com.gjc.async.EventType;
 import com.gjc.service.UserService;
 import com.gjc.util.ToutiaoUtil;
 import org.slf4j.Logger;
@@ -20,6 +23,10 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    EventProducer eventProducer;
+
 
 
     @RequestMapping(path={"/reg/"},method={RequestMethod.GET, RequestMethod.POST})
@@ -63,6 +70,9 @@ public class LoginController {
                     cookie.setMaxAge(3600*24*5);
                 }
                 response.addCookie(cookie);
+                eventProducer.fireEvent(new EventModel(EventType.LOGIN).setActorId((int)map.get("userId"))
+                        .setExt("username", (String) map.get("username"))
+                        .setExt("email","xxxxxxxxxxx@qq.com"));
                 return ToutiaoUtil.getJSONString(0,"登录成功");
             }else{
                 return ToutiaoUtil.getJSONString(1,map);

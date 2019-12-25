@@ -74,6 +74,9 @@ public class UserService {
             return map;
         }
 
+        map.put("userId", user.getId());
+        map.put("username", user.getName());
+
         String ticket = addLoginTicket(user.getId());
         map.put("ticket",ticket);
 

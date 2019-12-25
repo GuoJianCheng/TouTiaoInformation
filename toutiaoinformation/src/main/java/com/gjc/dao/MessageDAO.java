@@ -2,10 +2,7 @@ package com.gjc.dao;
 
 import com.gjc.model.Comment;
 import com.gjc.model.Message;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -41,4 +38,8 @@ public interface MessageDAO {
     //这里是to_Id = #{userId}，from_id没有意义的，发给当前用户（我）才有意义
     @Select({" select count(id) from ",TABLE_NAME, "where has_read = 0 and to_id = #{userId} and conversation_id=#{conversationId}"})
     int getConversationUnreadCount(@Param("userId") int userId, @Param("conversationId") String conversationId);
+
+    //看了站内信，点到letterDetail中，就读过了，将has_read置为1
+    @Update({"update", TABLE_NAME, "set has_read = 1 where to_id = #{userId} and conversation_id=#{conversationId}"})
+    void updateHasRead(@Param("userId") int userId, @Param("conversationId") String conversationId);
 }

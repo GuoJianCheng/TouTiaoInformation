@@ -7,7 +7,7 @@ package com.gjc;
 import com.gjc.dao.UserDAO;
 import com.gjc.model.*;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.MapTest;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,7 +34,7 @@ public class InitDatabaseTests {
     @Autowired
     CommentDAO commentDAO;
 
-    @Test
+    @MapTest
     public void initData() {
         Random random = new Random();
         for (int i = 0; i < 11; ++i) {

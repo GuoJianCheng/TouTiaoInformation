@@ -72,6 +72,8 @@ public class MessageController {
                 messages.add(vo);
             }
             model.addAttribute("messages",messages);
+            //看了站内信，点到letterDetail中，就读过了，将has_read置为1
+            messageService.updateHasRead(hostHolder.getUser().getId(),conversationId);
 
         } catch (Exception e) {
             logger.error("获取详情消息失败 "+e.getMessage());
