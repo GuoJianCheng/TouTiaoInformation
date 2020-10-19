@@ -23,9 +23,9 @@ public class AliService {
     // Endpoint以杭州为例，其它Region请按实际情况填写。
     private static final String endpoint = "oss-cn-beijing.aliyuncs.com";
     // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
-    private static final String accessKeyId = "LTAI4Fivoz7uELj9xV7LEWcd";
-    private static final String accessKeySecret = "PvEMWrb6qN9I9mEhzSArUhGlwfsKvd";
-    private static final String bucketName = "toutiaoinformationpublic";
+    private static final String accessKeyId = "";//这里要填写accessKeyId，此处不放具体accessKeyId，因为阿里云有监控，怕泄漏信息
+    private static final String accessKeySecret = "";//这里要填写accessKeySecret
+    private static final String bucketName = "";//这里要填写bucketName
 
 
     public String saveImage(MultipartFile file) throws IOException {
